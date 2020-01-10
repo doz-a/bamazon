@@ -20,7 +20,7 @@ function populateProducts() {
     connection.query(`SELECT * FROM bamazon`, function (err, res) {
         if (err) throw err;
         for (var i = 0; i < res.length; i++) {
-            console.log(`| Item Name: ${res[i].product_name} | ID: ${res[i].item_id} | Price: ${res[i].price} | Quantity: ${res[i].quantity} |`);
+            console.log(`|| ID: ${res[i].item_id} ||Item Name: ${res[i].product_name} || Price: ${res[i].price} || Quantity: ${res[i].quantity} ||`);
         }
         // Invokes Inquirer 
         startInquirer();
@@ -35,7 +35,7 @@ function startInquirer() {
             message: "What is the ID of the product you would like to buy?"
         })
         .then(function (answer) {
-            console.log(answer.getId);
+            console.log(`${answer.getId}`);
             // Question two 
             questionTwo(answer.getId);
         })
@@ -54,10 +54,14 @@ function questionTwo(id) {
             connection.query(`SELECT * FROM bamazon WHERE item_id = ?`, [id], function (err, res) {
                 if (err) throw err;
                 if (res[0].quantity > parseInt(answer.unitAmount)) {
-                    console.log(answer.unitAmount + " of item bought!")
+
+                    connection.query(`UPDATE bamazon SET quantity = quantity - ${answer.unitAmount} WHERE item_id = ${id}`);
+                    console.log(`${answer.unitAmount} of ${res[0].product_name} bought! 
+Total price was $${answer.unitAmount * res[0].price} 
+There are ${res[0].quantity - answer.unitAmount} ${res[0].product_name} left.
+Thank you for your business <(0.0)>`);
 
                     // test mas 
-                    connection.query(`UPDATE bamazon SET quantity = quantity - ${answer.unitAmount} WHERE item_id = ${id}`);
 
                     connection.end();
                     // Start test 
