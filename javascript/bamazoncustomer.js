@@ -24,18 +24,31 @@ function start() {
         .then(function (answer) {
             console.log(answer.getId);
             // Question two 
-            questionTwo();
+            questionTwo(answer.getId);
         })
 }
 
-function questionTwo() {
+// need to populate the items in the array on start, then inquirer
+
+function questionTwo(id) {
     inquirer
         .prompt({
             name: "unitAmount",
             message: "How many units of the product would you like to buy?"
         })
         .then(function (answer) {
-            console.log(answer.unitAmount);
+
+            connection.query(`SELECT * FROM bamazon WHERE item_id = ?`, [id], function (err, res) {
+                if (err) throw err;
+                if (res[0].quantity > parseInt(answer.unitAmount)) {
+                    console.log(answer.unitAmount + " of item bought!")
+                }
+                else {
+                    console.log(`There's not enough, maximum quantity you can buy is ${res[0].quantity}`);
+                }
+                console.log(res[0].quantity);
+            })
+            connection.end();
         })
 }
 
@@ -43,7 +56,7 @@ function questionTwo() {
 //     if (err) throw err;
 //     console.log(res[0].product_name);
 // })
-connection.end();
+// connection.end();
 // inquirer
 // prompt
 // * The first should ask them the ID of the product they would like to buy.
