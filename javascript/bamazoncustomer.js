@@ -9,13 +9,27 @@ var connection = mysql.createConnection({
     database: "bamazon"
 });
 
+// Connection 
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    start();
 });
 
-function start() {
+// Need to populate the items in the array on start, then inquirer
+function populateProducts() {
+    connection.query(`SELECT * FROM bamazon`, function (err, res) {
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++) {
+            console.log(`| Item Name: ${res[i].product_name} | ID: ${res[i].item_id} | Price: ${res[i].price} | Quantity: ${res[i].quantity} |`);
+        }
+
+        // Invokes Inquirer 
+        startInquirer();
+    })
+}
+
+// Inquirer starts here 
+function startInquirer() {
     inquirer
         .prompt({
             name: "getId",
@@ -27,8 +41,6 @@ function start() {
             questionTwo(answer.getId);
         })
 }
-
-// need to populate the items in the array on start, then inquirer
 
 function questionTwo(id) {
     inquirer
@@ -52,6 +64,7 @@ function questionTwo(id) {
         })
 }
 
+populateProducts();
 // connection.query(`SELECT * FROM bamazon`, function (err, res) {
 //     if (err) throw err;
 //     console.log(res[0].product_name);
