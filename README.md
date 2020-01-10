@@ -38,23 +38,21 @@ The next prompt appears, asking for the quanity the user would like.
 ## node bamazoncustomer.js
 Initializing the app, queries mySQL and displays product information, as well as invoking inquirer
 
-![Alt Text](x)
+![Alt Text](https://gyazo.com/608f383d88009ffb595e1627c412883e)
 
 ## inputting a buy request that is greater than the quantity
 Displays a message that the buy was unsuccessful :(
 
-![Alt Text](x)
-
-## inputting an ID and then quantity
-In this case id of 3, and 50 of them, displays amount of bananas bought, total price, amount of bananas left
-
-![Alt Text](x)
-
-![Alt Text](https://gyazo.com/8e90642bc4dec6d84a70ce65c7f15df1.gif)
+![Alt Text](https://gyazo.com/d69ff5def0b458eba5678dc7a7a22d6c)
 
 ## Readme break time! Random Animal Gif:
 
 ![Alt Text](https://media.giphy.com/media/xBAreNGk5DapO/giphy.gif)
+
+## inputting an ID and then quantity
+In this case id of 3, and 50 of them, displays amount of bananas bought, total price, amount of bananas left
+
+![Alt Text](https://gyazo.com/27a05d9e1adc4d772eb1c7b82199f8be)
 
 Thanks for reading!
 
