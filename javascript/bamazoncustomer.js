@@ -20,7 +20,7 @@ function populateProducts() {
     connection.query(`SELECT * FROM bamazon`, function (err, res) {
         if (err) throw err;
         for (var i = 0; i < res.length; i++) {
-            console.log(`|| ID: ${res[i].item_id} ||Item Name: ${res[i].product_name} || Price: ${res[i].price} || Quantity: ${res[i].quantity} ||`);
+            console.log(`|| ID: ${res[i].item_id} || Item Name: ${res[i].product_name} || Price: $${res[i].price} || Quantity: ${res[i].quantity} || Department: ${res[i].department_name}`);
         }
         // Invokes Inquirer 
         startInquirer();
@@ -55,29 +55,23 @@ function questionTwo(id) {
                 if (err) throw err;
                 if (res[0].quantity > parseInt(answer.unitAmount)) {
 
+                    // Subtracts units bought from the quantity on mySQL
                     connection.query(`UPDATE bamazon SET quantity = quantity - ${answer.unitAmount} WHERE item_id = ${id}`);
+
+                    // Displays information on item bought 
                     console.log(`${answer.unitAmount} of ${res[0].product_name} bought! 
 Total price was $${answer.unitAmount * res[0].price} 
-There are ${res[0].quantity - answer.unitAmount} ${res[0].product_name} left.
-Thank you for your business <(0.0)>`);
-
-                    // test mas 
-
+There are ${res[0].quantity - answer.unitAmount} of ${res[0].product_name} left.
+Thank you for your business (/)<(0.0)>(/)`);
                     connection.end();
-                    // Start test 
                 }
                 else {
-                    console.log(`There's not enough, maximum quantity you can buy is ${res[0].quantity}`);
+                    // Displays information on the item that cant be bought 
+                    console.log(`There is not enough, the maximum quantity you can buy is ${res[0].quantity}`);
                     connection.end();
                 }
-                // console.log(res[0].quantity);
             })
         })
 }
-
+// Initializes product display on node start 
 populateProducts();
-// connection.query(`SELECT * FROM bamazon`, function (err, res) {
-//     if (err) throw err;
-//     console.log(res[0].product_name);
-// })
-// connection.end();
