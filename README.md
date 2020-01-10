@@ -9,79 +9,53 @@ BAMazon is a terminal based online store. A user begins by opening the terminal 
 
 ### node bamazoncustomer.js
 
-LIRI bot is a terminal based API searcher. A user can make searches by using the following commands:
+This displays available items in the terminal, including price, quantity, department name, and item ID.
 
-### node liri.js movie-this "movie name"
-Searches OMDB API for the movie, and responds with info about the title, year released, rating, language, plot, actors
+Inquirer is also activated, and the user can enter the item ID of the product they wish to buy.
 
-### node liri.js spotify-this-song "song name"
-Searches Spotify API for the song name, responds with artist name, an album name and a song preview link
-
-### node liri.js concert-this "artist name"
-Searches bands in town API for an artist, and displays upcoming concerts with venue location and dates
-
-### node liri.js do-what-it-says
-Reads a text file separate from the javascript file, and runs the spotify-this-song command for the song "I Want it That Way"
-Text file can be updated to run movie-this for a movie name, or concert-this for an artist
+The next prompt appears, asking for the quanity the user would like.
 
 # App Organization
-### liri.js
+### bamazoncustomer.js
 1. npm packages required at the top
-2. readText function utilizes built in npm fs package to read the random.txt file and the data in the file as arguments for node command do-what-it-says
-3. getMovie function retrieves movie information from the OMDB API and displays info in the terminal
-4. getMusic function retrieves song information from Spotify's API and displays info in the terminal
-5. getConcert function retrieves concert information about an artist from the bands in town API and displays info in the terminal
-6. switcher function uses switch case to pass in argument 2 and argument 3 from the provess.argv array, and runs one of the four commands
-
-4. Include screenshots, gifs or videos of the app functioning
+2. mySQL connections at the top
+3. populateProducts function queries mySQL database bamazon and displays the products available
+4. startInquirer function prompts user to enter the ID of the item they would like to buy
+5. questionTwo function asks how many units the user would like to purchase, and when input is received, it checks to make sure there are enough of the product. If there is enough product, then a success message appears and the bought items are subtracted from the database. If there is not enough product, a decline message appears
 
 ## Technologies used
 1. Javascript
 2. NodeJS packages
-3. bands in town API
-4. OMDB API
-5. Spotify API
+3. mySQL
+4. Gyazo for gif creation
 
 ## Developers
 1. Miguel Delos Santos
 
 
-# Commands Working Using Gifs:
+# Usage Gifs:
 
-## concert-this
-With name of venue, venue location, date of event using moment MM/DD/YYYY, with "ariana grande" as the search
+## node bamazoncustomer.js
+Initializing the app, queries mySQL and displays product information, as well as invoking inquirer
 
-![Alt Text](https://gyazo.com/8729ba02b5f6e83408b5a04b054b16b3.gif)
+![Alt Text](x)
 
-## spotify-this-song
-With artist, song name, song preview link, album, searches for "thank u, next"
+## inputting a buy request that is greater than the quantity
+Displays a message that the buy was unsuccessful :(
 
-![Alt Text](https://gyazo.com/775e902cf902c5c9c5e22a37efbc8ca5.gif)
+![Alt Text](x)
 
-Default with no input in argument 3, searches for "The Sign" by Ace of Base
+## inputting an ID and then quantity
+In this case id of 3, and 50 of them, displays amount of bananas bought, total price, amount of bananas left
 
-![Alt Text](https://gyazo.com/7a5a9dccbcd6b1521ab818992d66689f.gif)
+![Alt Text](x)
 
-## Readme break time! Random Kitty Gif:
+## Readme break time! Random Doggo Gif:
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
-
-## movie-this
-With Title of movie, year, IMDB rating, rotten tomatoes rating, country produced, language, plot, actors, search is Spaceballs
-
-![Alt Text](https://gyazo.com/5bb7b1886e7ae2b902ea4983746e0769.gif)
-
-Default with no input in argument 3 shows info for Mr. Nobody
-
-![Alt Text](https://gyazo.com/a269e273e00539dbde933a0f4327d001.gif)
-
-## do-what-it-says
-Runs spotify-this-song
-
-![Alt Text](https://gyazo.com/8e90642bc4dec6d84a70ce65c7f15df1.gif)
+![Alt Text](https://media.giphy.com/media/dTJd5ygpxkzWo/giphy.gif)
 
 Thanks for reading!
 
 (//)<(0.0)>(//)
 
-12/18/2019
+1/10/2020

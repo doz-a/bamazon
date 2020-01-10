@@ -67,7 +67,7 @@ Thank you for your business (/)<(0.0)>(/)`);
                 }
                 else {
                     // Displays information on the item that cant be bought 
-                    console.log(`There is not enough, the maximum quantity you can buy is ${res[0].quantity}`);
+                    console.log(`The purchase was unsuccessful, there is not enough in stock, the maximum quantity you can buy is ${res[0].quantity}`);
                     connection.end();
                 }
             })
