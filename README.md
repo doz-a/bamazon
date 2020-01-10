@@ -50,6 +50,8 @@ In this case id of 3, and 50 of them, displays amount of bananas bought, total p
 
 ![Alt Text](x)
 
+![Alt Text](https://gyazo.com/8e90642bc4dec6d84a70ce65c7f15df1.gif)
+
 ## Readme break time! Random Doggo Gif:
 
 ![Alt Text](https://media.giphy.com/media/dTJd5ygpxkzWo/giphy.gif)
