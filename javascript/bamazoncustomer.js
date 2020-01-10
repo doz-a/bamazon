@@ -22,7 +22,6 @@ function populateProducts() {
         for (var i = 0; i < res.length; i++) {
             console.log(`| Item Name: ${res[i].product_name} | ID: ${res[i].item_id} | Price: ${res[i].price} | Quantity: ${res[i].quantity} |`);
         }
-
         // Invokes Inquirer 
         startInquirer();
     })
@@ -42,6 +41,7 @@ function startInquirer() {
         })
 }
 
+// Question two 
 function questionTwo(id) {
     inquirer
         .prompt({
@@ -50,17 +50,24 @@ function questionTwo(id) {
         })
         .then(function (answer) {
 
+            // Selecting from mySQL database and successfully buying item 
             connection.query(`SELECT * FROM bamazon WHERE item_id = ?`, [id], function (err, res) {
                 if (err) throw err;
                 if (res[0].quantity > parseInt(answer.unitAmount)) {
                     console.log(answer.unitAmount + " of item bought!")
+
+                    // test mas 
+                    connection.query(`UPDATE bamazon SET quantity = quantity - ${answer.unitAmount} WHERE item_id = ${id}`);
+
+                    connection.end();
+                    // Start test 
                 }
                 else {
                     console.log(`There's not enough, maximum quantity you can buy is ${res[0].quantity}`);
+                    connection.end();
                 }
-                console.log(res[0].quantity);
+                // console.log(res[0].quantity);
             })
-            connection.end();
         })
 }
 
@@ -70,7 +77,3 @@ populateProducts();
 //     console.log(res[0].product_name);
 // })
 // connection.end();
-// inquirer
-// prompt
-// * The first should ask them the ID of the product they would like to buy.
-// * The second message should ask how many units of the product they would like to buy.
