@@ -12,12 +12,37 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
+    start();
 });
 
-connection.query(`SELECT * FROM bamazon`, function (err, res) {
-    if (err) throw err;
-    console.log(res[0].product_name);
-})
+function start() {
+    inquirer
+        .prompt({
+            name: "getId",
+            message: "What is the ID of the product you would like to buy?"
+        })
+        .then(function (answer) {
+            console.log(answer.getId);
+            // Question two 
+            questionTwo();
+        })
+}
+
+function questionTwo() {
+    inquirer
+        .prompt({
+            name: "unitAmount",
+            message: "How many units of the product would you like to buy?"
+        })
+        .then(function (answer) {
+            console.log(answer.unitAmount);
+        })
+}
+
+// connection.query(`SELECT * FROM bamazon`, function (err, res) {
+//     if (err) throw err;
+//     console.log(res[0].product_name);
+// })
 connection.end();
 // inquirer
 // prompt
